@@ -16,7 +16,8 @@ export default class Register extends Component {
             nick:'',
             username:'',
             password:'',
-            avatar:'http://p3.music.126.net/VnZiScyynLG7atLIZ2YPkw==/18686200114669622.jpg?param=30y30'
+            user_defined:false,
+            imageUri:null,
         }
     }
     _create(){
@@ -37,17 +38,24 @@ export default class Register extends Component {
             cancelButtonTitle:'取消',
             takePhotoButtonTitle:'拍照',
             chooseFromLibraryButtonTitle:'选择相册',
+            maxWidth: 500,
+            maxHeight: 500,
             quality:0.75,
             allowsEditing:true,
             noData:false,
             storageOptions: {
-                skipBackup: true,
-                path:'images'
+                skipBackup: true
             }
         },(response) =>{
-            console.log('response'+response);
             if (response.didCancel){
                 return
+            }
+            else{
+                let source = { uri: response.uri }
+                this.setState({
+                    user_defined:true,
+                    imageUri: source
+                });
             }
         })
     }
@@ -55,7 +63,10 @@ export default class Register extends Component {
         return(
             <View style={styles.container}>
                 <TouchableOpacity onPress={this.cameraAction.bind(this)}>
-                    <Image source={require('../image/test2.png')} style={styles.image} resizeMode="cover" />
+                    {!this.state.user_defined ?
+                        <Image source={require('../image/test2.png')} style={styles.image} resizeMode="cover" />
+                       :<Image source={this.state.imageUri} style={styles.image} resizeMode="cover" />
+                    }
                 </TouchableOpacity>
                 <View style={styles.inputContainer}>
                     <Icon name="github-alt" size={25}/>
