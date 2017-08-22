@@ -144,3 +144,7 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+dependencies {
+    compile project(':react-native-image-picker')
+}
