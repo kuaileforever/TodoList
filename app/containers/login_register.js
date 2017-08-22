@@ -1,3 +1,7 @@
+/**
+ * login_register
+ */
+
 import {View,Text,StyleSheet,Image,TouchableOpacity,} from 'react-native'
 import React,{Component} from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
