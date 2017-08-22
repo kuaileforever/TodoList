@@ -1,58 +1,79 @@
-import {View,Text,StyleSheet,TextInput,TouchableOpacity,Image,Alert} from 'react-native'
+import {View,StyleSheet,Image,Alert,Text,TouchableOpacity} from 'react-native'
 import React,{Component} from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import _Button from '../components/_Button'
 // import _Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import __Icon from 'react-native-vector-icons/Ionicons'
 import {size,post} from '../util/util'
+import _TextInput from '../components/_TextInput'
+import ImagePicker from 'react-native-image-picker'
+import {ToastAndroid} from 'react-native'
 
-export default class Register_ extends Component {
+export default class Register extends Component {
     constructor(){
         super()
-        this.nick=''
-        this.username=''
-        this.password=''
-        this.avatar='http://p3.music.126.net/VnZiScyynLG7atLIZ2YPkw==/18686200114669622.jpg?param=30y30'
+        this.state={
+            nick:'',
+            username:'',
+            password:'',
+            avatar:'http://p3.music.126.net/VnZiScyynLG7atLIZ2YPkw==/18686200114669622.jpg?param=30y30'
+        }
     }
     _create(){
-        const formData = new FormData()
-        formData.append('nick',this.nick)
-        formData.append('username',this.username)
-        formData.append('password',this.password)
-        formData.append('avatar',this.avatar)
-        post('http://192.168.1.233:8888/user/register',
-            formData,
+        const params = this.state
+        post('http://192.168.3.32:3000/register',
+            params,
             ()=>{
-            Alert.alert('success')
+            ToastAndroid.show('恭喜！注册成功',1)
         },
             ()=>{
-            Alert.alert('error')
+            ToastAndroid.show('注册失败,请检测网络情况',1)
+        })
+    }
+
+    cameraAction (){
+        ImagePicker.showImagePicker({
+            title:'请选择:',
+            cancelButtonTitle:'取消',
+            takePhotoButtonTitle:'拍照',
+            chooseFromLibraryButtonTitle:'选择相册',
+            quality:0.75,
+            allowsEditing:true,
+            noData:false,
+            storageOptions: {
+                skipBackup: true,
+                path:'images'
+            }
+        },(response) =>{
+            console.log('response'+response);
+            if (response.didCancel){
+                return
+            }
         })
     }
     render(){
         return(
             <View style={styles.container}>
-                <Image/>
+                <TouchableOpacity onPress={this.cameraAction.bind(this)}>
+                    <Image source={require('../image/test2.png')} style={styles.image} resizeMode="cover" />
+                </TouchableOpacity>
                 <View style={styles.inputContainer}>
                     <Icon name="github-alt" size={25}/>
-                    <TextInput underlineColorAndroid="transparent" style={styles.text_input} placeholder="昵称" onChangeText={(text)=>this.nick=text}></TextInput>
+                    <_TextInput onChangeText={(text)=>this.setState({nick:text})} placeholder="昵称" />
                 </View>
                 <View style={styles.inputContainer}>
                     <Icon name="mobile-phone" size={25}/>
-                    <TextInput underlineColorAndroid="transparent" style={styles.text_input} placeholder="手机号码" onChangeText={(text)=>this.username=text}></TextInput>
+                    <_TextInput onChangeText={(text)=>this.setState({username:text})} placeholder="请输入手机号"/>
                 </View>
                 <View style={styles.inputContainer}>
                     <Icon name="lock" size={25} style={styles.paddingL_add}/>
-                    <TextInput secureTextEntry={true} underlineColorAndroid='transparent' style={[styles.text_input,styles.marginL_add]} placeholder="请输入密码" onChangeText={
-                        (text)=>this.password=text
-                    }></TextInput>
+                    <_TextInput onChangeText={(text)=>this.setState({password:text})} placeholder="请输入密码"/>
                 </View>
                 <View style={styles.inputContainer}>
                     <__Icon name="md-lock" size={25} style={styles.paddingL_add}/>
-                    <TextInput secureTextEntry={true} underlineColorAndroid='transparent' style={[styles.text_input,styles.marginL_add]} placeholder="请确认密码"></TextInput>
+                    <_TextInput  placeholder="请确认密码"/>
                 </View>
-                <TouchableOpacity style={styles.set} onPress={this._create.bind()}>
-                    <Text>建立账号</Text>
-                </TouchableOpacity>
+                <_Button text="创建账号" onPress={this._create.bind(this)}/>
             </View>
         )
     }
@@ -60,7 +81,7 @@ export default class Register_ extends Component {
 
 const styles = StyleSheet.create({
     container:{
-        marginTop:size.width*0.1,
+        marginTop:size.width*0.08,
         justifyContent:'center',
         alignItems:'center'
     },
@@ -68,31 +89,16 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center'
     },
-    text_input:{
-        width:size.width*0.65,
-        height:size.height*0.06,
-        borderWidth:1,
-        borderRadius:12,
-        paddingLeft:10,
-        marginTop:10,
-        marginLeft:15
-    },
     paddingL_add:{
         paddingLeft:5
     },
-    marginL_add:{
-        marginLeft:21
-    },
-    set:{
-        width:size.width*0.65,
-        height:size.height*0.05,
-        borderWidth:1,
-        borderColor:'#292929',
-        borderRadius:12,
-        alignItems:'center',
-        marginTop:size.height*0.08,
-        justifyContent:'center',
-        marginLeft:42
+    image:{
+        width:60,
+        height:60,
+        borderWidth:2,
+        borderRadius:30,
+        borderColor:'#00C5CD'
     }
+
 })
 

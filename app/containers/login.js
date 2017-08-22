@@ -1,7 +1,9 @@
 import {View,Text,StyleSheet,TextInput,TouchableOpacity,Alert} from 'react-native'
 import React,{Component} from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import _Button from '../components/_Button'
 import {size,post} from '../util/util'
+import _TextInput from '../components/_TextInput'
 
 export default class Login extends Component {
     constructor(){
@@ -13,7 +15,7 @@ export default class Login extends Component {
         const formData = new FormData()
         formData.append('username',this.username)
         formData.append('password',this.password)
-        post('http://192.168.1.233:8888/user/login',
+        post('http://192.168.3.32:3000/login',
             formData,
             ()=>{
                 Alert.alert('success')
@@ -31,17 +33,15 @@ export default class Login extends Component {
                         <Text style={styles.font}>手机号码/邮箱地址</Text>
                     </View>
                 </View>
-                <TextInput underlineColorAndroid='transparent' style={styles.text_input} onChangeText={(text)=>this.username=text}></TextInput>
+                <_TextInput onChangeText={(text)=>this.username=text}/>
                 <View style={styles.icon_text}>
                     <Icon name="lock" size={25} color="#2B2B2B"/>
                     <View style={styles.textView}>
                         <Text style={styles.font}>密码</Text>
                     </View>
                 </View>
-                <TextInput underlineColorAndroid='transparent' style={styles.text_input} secureTextEntry={true} onChange={(text)=>this.password=text}></TextInput>
-                <TouchableOpacity style={styles.login} onPrss={this._login}>
-                    <Text>登录</Text>
-                </TouchableOpacity>
+                <_TextInput onChangeText={(text)=>this.password=text}/>
+                <_Button text="登录" onPrss={this._login}/>
             </View>
         )
     }
@@ -59,30 +59,12 @@ const styles = StyleSheet.create({
         marginLeft:10,
         marginTop:20
     },
-    text_input:{
-        width:size.width*0.65,
-        height:size.height*0.06,
-        borderWidth:1,
-        borderRadius:12,
-        paddingLeft:10,
-        marginTop:10
-    },
     textView:{
         justifyContent:'center',
         marginLeft:10
     },
     font:{
         color:'#080808'
-    },
-    login:{
-        width:size.width*0.65,
-        height:size.height*0.05,
-        borderWidth:1,
-        borderColor:'#292929',
-        borderRadius:12,
-        alignItems:'center',
-        marginTop:size.height*0.08,
-        justifyContent:'center',
-    },
+    }
 })
 

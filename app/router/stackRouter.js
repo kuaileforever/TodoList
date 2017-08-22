@@ -1,7 +1,7 @@
 import {StackNavigator} from 'react-navigation'
 import Login_Register from '../containers/login_register'
 import Login from '../containers/login'
-import Register_ from '../containers/register'
+import Register from '../containers/register'
 import Forget from '../containers/forget'
 import {Home} from "./tabRouter"
 
@@ -25,8 +25,8 @@ export const Route = StackNavigator({
             }
         }
     },
-    Register_:{
-        screen:Register_,
+    Register:{
+        screen:Register,
         navigationOptions:{
             headerTitle:'注册',
             headerTitleStyle:{
@@ -65,5 +65,5 @@ export const Route = StackNavigator({
         }
     }
 },{
-    initialRouteName:'Home',
+    initialRouteName:'Login_Register',
 })

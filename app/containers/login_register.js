@@ -1,11 +1,7 @@
-/**
- * login_register
- * 创jiang  fenzhi
- */
-
 import {View,Text,StyleSheet,Image,TouchableOpacity,} from 'react-native'
 import React,{Component} from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import _Button from '../components/_Button'
 import {size,pixel} from '../util/util'
 
 export default class Login_Register extends Component {
@@ -15,12 +11,8 @@ export default class Login_Register extends Component {
             <View style={styles.container}>
                 <Image/>
                 <Text style={[styles.logo_text]}>To Do List</Text>
-                <TouchableOpacity style={[styles.login_register]} onPress={()=>navigate('Login')}>
-                    <Text style={styles.Text}>登录</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={[styles.login_register]} onPress={()=>navigate('Register_')}>
-                    <Text style={styles.Text}>注册</Text>
-                </TouchableOpacity>
+                <_Button text="登录" onPress={()=>navigate('Login')} />
+                <_Button text="注册" onPress={()=>navigate('Register')} />
                 <Text style={[styles.forget]} onPress={()=>navigate('Forget')}>忘记密码？</Text>
                 <View style={styles.otherLogin_contanier}>
                     <View style={styles.hr}></View>
