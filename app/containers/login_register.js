@@ -1,5 +1,6 @@
 /**
  * login_register
+ * 创jiang  fenzhi
  */
 
 import {View,Text,StyleSheet,Image,TouchableOpacity,} from 'react-native'
