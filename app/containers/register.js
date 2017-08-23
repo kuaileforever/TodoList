@@ -78,11 +78,11 @@ export default class Register extends Component {
                 </View>
                 <View style={styles.inputContainer}>
                     <Icon name="lock" size={25} style={styles.paddingL_add}/>
-                    <_TextInput onChangeText={(text)=>this.setState({password:text})} placeholder="请输入密码"/>
+                    <_TextInput onChangeText={(text)=>this.setState({password:text})} placeholder="请输入密码" secureTextEntry={true}/>
                 </View>
                 <View style={styles.inputContainer}>
                     <__Icon name="md-lock" size={25} style={styles.paddingL_add}/>
-                    <_TextInput  placeholder="请确认密码"/>
+                    <_TextInput  placeholder="请确认密码" secureTextEntry={true}/>
                 </View>
                 <_Button text="创建账号" onPress={this._create.bind(this)}/>
             </View>

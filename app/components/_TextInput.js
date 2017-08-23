@@ -10,7 +10,14 @@ export default class _TextInput extends Component {
     }
     render(){
         return(
-            <TextInput underlineColorAndroid="transparent"  placeholder={this.props.placeholder} onChangeText={this.props.onChangeText} style={[styles.text_input,this.props.add]} ></TextInput>
+            <TextInput
+                underlineColorAndroid="transparent"
+                placeholder={this.props.placeholder}
+                onChangeText={this.props.onChangeText}
+                style={[styles.text_input,this.props.add]}
+                secureTextEntry={this.props.secureTextEntry}
+            >
+            </TextInput>
         )
     }
 }

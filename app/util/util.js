@@ -20,7 +20,7 @@ module.exports = {
             .then((responseText) => {
                 successCallback(JSON.parse(responseText));
             })
-            .catch(function(err){
+            .catch((err)=>{
                 failCallback(err);
             });
     },
@@ -38,7 +38,7 @@ module.exports = {
             .then((responseText) => {
                 successCallback(JSON.parse(responseText));
             })
-            .catch(function(err){
+            .catch((err)=>{
                 failCallback(err);
             });
     },

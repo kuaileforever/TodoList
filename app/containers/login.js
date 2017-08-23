@@ -42,7 +42,7 @@ export default class Login extends Component {
                         <Text style={styles.font}>密码</Text>
                     </View>
                 </View>
-                <_TextInput onChangeText={(text)=>this.password=text}/>
+                <_TextInput onChangeText={(text)=>this.password=text} password={true} secureTextEntry={true}/>
                 <_Button text="登录" onPrss={this._login}/>
             </View>
         )

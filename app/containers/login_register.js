@@ -5,41 +5,64 @@ import _Button from '../components/_Button'
 import {size,pixel,px3dp} from '../util/util'
 
 export default class Login_Register extends Component {
+    constructor(){
+        super()
+        this.state={
+            isActive_wechat:false,
+            isActive_qq:false,
+            isActive_sina:false
+        }
+    }
     render(){
         const {navigate} = this.props.navigation
         return(
             <View style={styles.container}>
-                <View style={styles.logo}></View>
-                <Text style={[styles.logo_text]}>To Do List</Text>
-                <_Button text="手机号码登录" onPress={()=>navigate('Login')} />
-                <_Button text="注册" onPress={()=>navigate('Register')} />
-                <Text style={[styles.forget]} onPress={()=>navigate('Forget')}>忘记密码？</Text>
-                <View style={styles.otherLogin_contanier}>
-                    <View style={styles.hr}></View>
-                    <Text syle={styles.otherLogin_text}>其他登录方式</Text>
-                    <View style={styles.hr}></View>
-                </View>
-                <View style={styles.otherLogin}>
-                    <TouchableOpacity>
-                        <Image style={styles.otherLogin_image} source={require('../image/wechat_btn_nor.png')}/>
-                        <View style={styles.otherLogin_fontContainer}>
-                            <Text style={styles.otherLogin_font}>微信</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image style={styles.otherLogin_image} source={require('../image/QQ_btn_nor.png')}/>
-                        <View style={styles.otherLogin_fontContainer}>
-                            <Text style={styles.otherLogin_font}>QQ</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image style={styles.otherLogin_image} source={require('../image/sina_btn_nor.png')}/>
-                        <View style={styles.otherLogin_fontContainer}>
-                            <Text style={styles.otherLogin_font}>微博</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+                <Image style={styles.bg} source={require('../image/first_bg.png')}>
+                    <View style={styles.logo}></View>
+                    <Text style={[styles.logo_text]}>To Do List</Text>
+                    <_Button text="登录" onPress={()=>navigate('Login')} />
+                    <_Button text="注册" onPress={()=>navigate('Register')} />
+                    <Text style={[styles.forget]} onPress={()=>navigate('Forget')}>忘记密码？</Text>
+                    <View style={styles.otherLogin_contanier}>
+                        <View style={styles.hr}></View>
+                        <Text syle={styles.otherLogin_text}>其他登录方式</Text>
+                        <View style={styles.hr}></View>
+                    </View>
+                    <View style={styles.otherLogin}>
+                        <TouchableOpacity onPress={()=>{this.setState({isActive_wechat:!this.state.isActive_wechat})}}>
+                            {
+                                !this.state.isActive_wechat
+                                ? <Image style={styles.otherLogin_image} source={require('../image/wechat_btn_nor.png')}/>
+                                : <Image style={styles.otherLogin_image} source={require('../image/wechat_btn_highlighted.png')}/>
+                            }
+                            <View style={styles.otherLogin_fontContainer}>
+                                <Text style={styles.otherLogin_font}>微信</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={()=>this.setState({isActive_qq:!this.state.isActive_qq})}>
+                            {
+                                !this.state.isActive_qq
+                                    ? <Image style={styles.otherLogin_image} source={require('../image/QQ_btn_nor.png')}/>
+                                    : <Image style={styles.otherLogin_image} source={require('../image/QQ_btn_highlighted.png')}/>
+                            }
+                            <View style={styles.otherLogin_fontContainer}>
+                                <Text style={styles.otherLogin_font}>QQ</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={()=>this.setState({isActive_sina:!this.state.isActive_sina})}>
+                            {
+                                !this.state.isActive_sina
+                                    ? <Image style={styles.otherLogin_image} source={require('../image/sina_btn_nor.png')}/>
+                                    : <Image style={styles.otherLogin_image} source={require('../image/sina_btn_highlighted.png')}/>
+                            }
+                            <View style={styles.otherLogin_fontContainer}>
+                                <Text style={styles.otherLogin_font}>微博</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </Image>
             </View>
+
         )
     }
 }
@@ -47,7 +70,12 @@ export default class Login_Register extends Component {
 const styles = StyleSheet.create({
     container:{
         flex:1,
+    },
+    bg:{
         alignItems:'center',
+        width:null,
+        height:null,
+        flex:1
     },
     logo:{
         width:px3dp(200),
