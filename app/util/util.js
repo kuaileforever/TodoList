@@ -13,10 +13,8 @@ module.exports = {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height
     },
-    px2dp:function (ElementPx) {
-        const deviceHeightDp = Dimensions.get('window').height
-        const uiHeightDp = 640
-        return ElementPx * deviceHeightDp/uiHeightDp
+    px3dp:function (ElementPx) {
+        return ElementPx /3
     },
     // 基于fetch的get方法
     get: function(url, successCallback, failCallback){

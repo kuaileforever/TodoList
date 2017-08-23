@@ -1,7 +1,6 @@
-import {Text,StyleSheet,TextInput,View} from 'react-native'
+import {StyleSheet,TextInput,View} from 'react-native'
 import React,{Component,PropTypes} from 'react'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import {size,px2dp} from '../util/util'
+import {size,px3dp} from '../util/util'
 
 export default class _TextInput extends Component {
     static propType = {
@@ -20,11 +19,11 @@ const styles = StyleSheet.create({
     text_input:{
         width:size.width*0.65,
         height:size.height*0.06,
-        borderWidth:px2dp(1),
-        borderRadius:px2dp(12),
-        paddingLeft:px2dp(10),
-        marginTop:px2dp(10),
-        marginLeft:px2dp(15)
+        borderWidth:px3dp(1),
+        borderRadius:px3dp(12),
+        paddingLeft:px3dp(10),
+        marginTop:px3dp(10),
+        marginLeft:px3dp(15)
     }
 })
 

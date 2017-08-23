@@ -4,6 +4,7 @@ import Login from '../containers/login'
 import Register from '../containers/register'
 import Forget from '../containers/forget'
 import {Home} from "./tabRouter"
+import {navigationOptions_set} from '../components/_navigationOptions'
 
 export const Route = StackNavigator({
     Login_Register:{
@@ -14,56 +15,19 @@ export const Route = StackNavigator({
     },
     Login:{
         screen:Login,
-        navigationOptions:{
-            headerTitle:'登录',
-            headerTitleStyle:{
-                alignSelf:'center',
-                paddingRight:40
-            },
-            headerStyle:{
-                backgroundColor:'#7A7A7A'
-            }
-        }
+        navigationOptions:navigationOptions_set('登录')
     },
     Register:{
         screen:Register,
-        navigationOptions:{
-            headerTitle:'注册',
-            headerTitleStyle:{
-                alignSelf:'center',
-                paddingRight:40
-            },
-            headerStyle:{
-                backgroundColor:'#7A7A7A'
-            }
-        }
+        navigationOptions:navigationOptions_set('注册')
     },
     Forget:{
         screen:Forget,
-        navigationOptions:{
-            headerTitle:'忘记密码',
-            headerTitleStyle:{
-                alignSelf:'center',
-                paddingRight:40
-            },
-            headerStyle:{
-                backgroundColor:'#7A7A7A'
-            }
-        }
+        navigationOptions:navigationOptions_set('忘记密码')
     },
     Home:{
         screen:Home,
-        navigationOptions:{
-            headerTitle:'任务',
-            headerTitleStyle:{
-                alignSelf:'center',
-                paddingRight:40
-            },
-            headerStyle:{
-                backgroundColor:'#7A7A7A'
-            }
-        }
     }
 },{
-    initialRouteName:'Login_Register',
+    initialRouteName:'Home',
 })

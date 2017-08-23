@@ -1,6 +1,6 @@
 import {Text,StyleSheet,TouchableOpacity,} from 'react-native'
 import React,{Component,PropTypes} from 'react'
-import {size,px2dp} from '../util/util'
+import {size,px3dp} from '../util/util'
 
 export default class _Button extends Component {
     static propType = {
@@ -19,14 +19,20 @@ export default class _Button extends Component {
 const styles = StyleSheet.create({
     button:{
         width:size.width*0.65,
-        height:size.height*0.05,
-        borderWidth:px2dp(1),
-        borderColor:'#292929',
-        borderRadius:px2dp(5),
+        height:px3dp(161),
+        borderWidth:px3dp(1),
+        borderColor:'#d7c4bb',
+        backgroundColor:'#d7c4bb',
+        borderRadius:px3dp(50),
         alignItems:'center',
-        marginTop:px2dp(20),
-        marginLeft:px2dp(30),
+        marginTop:px3dp(100),
+        marginLeft:px3dp(30),
         justifyContent:'center'
+    },
+    text:{
+        fontFamily:'方正兰亭超细黑简',
+        fontSize:px3dp(48),
+        color:'#1e1b19'
     }
 })
 

@@ -64,7 +64,7 @@ export default class Register extends Component {
             <View style={styles.container}>
                 <TouchableOpacity onPress={this.cameraAction.bind(this)}>
                     {!this.state.user_defined ?
-                        <Image source={require('../image/test2.png')} style={styles.image} resizeMode="cover" />
+                        null
                        :<Image source={this.state.imageUri} style={styles.image} resizeMode="cover" />
                     }
                 </TouchableOpacity>

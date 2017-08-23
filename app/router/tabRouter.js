@@ -1,4 +1,4 @@
-import {TabNavigator} from 'react-navigation'
+import {TabNavigator,TabBarBottom} from 'react-navigation'
 import React from 'react'
 import Task from '../containers/task'
 import Sign_in from '../containers/sign_in'
@@ -8,16 +8,17 @@ export const Home = TabNavigator({
     Task:{
         screen:Task,
         navigationOptions:{
-            tabBarLabel:'任务',
+            title:'任务',
             tabBarIcon:()=>(
-                <Icon name="tasks" size={25}/>
+                <Icon name="edit" size={25}/>
             )
         }
+
     },
     Sign_in:{
         screen:Sign_in,
         navigationOptions:{
-            tabBarLabel:'打卡',
+            title:'打卡',
             tabBarIcon:()=>(
                 <Icon name="edit" size={25}/>
             )
@@ -27,16 +28,25 @@ export const Home = TabNavigator({
     Community:{
         screen:Community,
         navigationOptions:{
-            tabBarLabel:'社区',
+            title:'社区',
             tabBarIcon:()=>(
                 <Icon name="group" size={25}/>
             )
         }
     }
 },{
+    tabBarComponent:TabBarBottom,
     tabBarPosition:'bottom',
-    tabBarOptions:{
-        showIcon:true,
-
-    }
+    swipeEnabled:true,
+    lazy:true,
+    // tabBarOptions:{
+    //     activeTintColor:'red',
+    //     activeBackgroundColor:'blue',
+    //     inactiveTintColor:'yellow',
+    //     inactiveBackgroundColor:'#987',
+    //     showLabel:true,
+    //     labelStyle:{
+    //         fontSize:12
+    //     }
+    // }
 })
