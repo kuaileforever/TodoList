@@ -1,8 +1,4 @@
 const defaultOptions = {
-    headerTitleStyle:{
-        alignSelf:'center',
-        paddingRight:40
-    },
     headerStyle:{
         backgroundColor:'#7A7A7A'
     }

@@ -29,5 +29,5 @@ export const Route = StackNavigator({
         screen:Home,
     }
 },{
-    initialRouteName:'Home',
+    initialRouteName:'Login_Register',
 })

@@ -4,24 +4,26 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import _Button from '../components/_Button'
 import {size,post} from '../util/util'
 import _TextInput from '../components/_TextInput'
+import {ToastAndroid} from 'react-native'
 
 export default class Login extends Component {
     constructor(){
         super()
-        this.username=''
-        this.password=''
+        this.state={
+            username:'',
+            password:'',
+        }
     }
     _login(){
-        const formData = new FormData()
-        formData.append('username',this.username)
-        formData.append('password',this.password)
+        const params = this.state
         post('http://192.168.3.32:3000/login',
-            formData,
+            params,
             ()=>{
-                Alert.alert('success')
+                ToastAndroid.show('成功登录',1)
+                this.props.navigation.navigate('Home')
             },
             ()=>{
-                Alert.alert('error')
+                ToastAndroid.show('登录失败,请重新输入',1)
             })
     }
     render(){
