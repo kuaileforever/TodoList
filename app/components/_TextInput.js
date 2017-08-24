@@ -6,7 +6,7 @@ export default class _TextInput extends Component {
     static propType = {
         placeholder: PropTypes.string,
         onChangeText:PropTypes.func,
-        add:View.propTypes.style
+        addStyle:View.propTypes.style
     }
     render(){
         return(
@@ -14,7 +14,7 @@ export default class _TextInput extends Component {
                 underlineColorAndroid="transparent"
                 placeholder={this.props.placeholder}
                 onChangeText={this.props.onChangeText}
-                style={[styles.text_input,this.props.add]}
+                style={[styles.text_input,this.props.addStyle]}
                 secureTextEntry={this.props.secureTextEntry}
             >
             </TextInput>
